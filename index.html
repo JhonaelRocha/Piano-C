@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Piano</title>
+   <!-- Normalize CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <!-- Font Roboto -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
+
+   <!-- CSS -->
+   <link rel="stylesheet" href="./assets/styles.css">
+</head>
+
+<body>
+   <br>
+   <div class="opcoes">
+      Piano
+   </div>
+   <br>
+   <br>
+   <br>
+
+   <div id="piano-container">
+      <div id="piano-wrap">
+         <div class="piano-key white-key" data-key-num="0"><span id="A0" class="key-label">A</span></div><!-- ラ -->
+         <div class="piano-key black-key" data-key-num="1"><span id="Bb0" class="key-label">Bb</span></div><!-- ラ# -->
+         <div class="piano-key white-key" data-key-num="2"><span id="B0" class="key-label">B</span></div><!-- シ -->
+         <div class="piano-key white-key" data-key-num="3"><span id="C1" class="key-label">C</span></div><!-- ド -->
+         <div class="piano-key black-key" data-key-num="4"><span id="C#1" class="key-label">C#</span></div><!-- ド# -->
+         <div class="piano-key white-key" data-key-num="5"><span id="D1" class="key-label">D</span></div><!-- レ -->
+         <div class="piano-key black-key" data-key-num="6"><span id="Eb1" class="key-label">Eb</span></div><!-- レ# -->
+         <div class="piano-key white-key" data-key-num="7"><span id="E1" class="key-label">E</span></div><!-- ミ -->
+         <div class="piano-key white-key" data-key-num="8"><span id="F1" class="key-label">F</span></div><!-- ファ -->
+         <div class="piano-key black-key" data-key-num="9"><span id="F#1" class="key-label">F#</span></div><!-- ファ# -->
+         <div class="piano-key white-key" data-key-num="10"><span id="G1" class="key-label">G</span></div><!-- ソ -->
+         <div class="piano-key black-key" data-key-num="11"><span id="Ab1" class="key-label">Ab</span></div><!-- ソ# -->
+         <div class="piano-key white-key" data-key-num="12"><span id="A1" class="key-label">Q<br>A</span></div><!-- ラ -->
+         <div class="piano-key black-key" data-key-num="13"><span id="Bb1" class="key-label">2<br>Bb</span></div><!-- ラ# -->
+         <div class="piano-key white-key" data-key-num="14"><span id="B1" class="key-label">W<br>B</span></div><!-- シ -->
+         <div class="piano-key white-key" data-key-num="15"><span id="C2" class="key-label">E<br>C</span></div><!-- ド -->
+         <div class="piano-key black-key" data-key-num="16"><span id="C#2" class="key-label">4<br>C#</span></div><!-- ド# -->
+         <div class="piano-key white-key" data-key-num="17"><span id="D2" class="key-label">R<br>D</span></div><!-- レ -->
+         <div class="piano-key black-key" data-key-num="18"><span id="Eb2" class="key-label">5<br>Eb</span></div><!-- レ# -->
+         <div class="piano-key white-key" data-key-num="19"><span id="E2" class="key-label">T<br>E</span></div><!-- ミ -->
+         <div class="piano-key white-key" data-key-num="20"><span id="F2" class="key-label">Y<br>F</span></div><!-- ファ -->
+         <div class="piano-key black-key" data-key-num="21"><span id="F#2" class="key-label">7<br>F#</span></div><!-- ファ# -->
+         <div class="piano-key white-key" data-key-num="22"><span id="G2" class="key-label">U<br>G</span></div><!-- ソ -->
+         <div class="piano-key black-key" data-key-num="23"><span id="Ab2" class="key-label">8<br>Ab</span></div><!-- ソ# -->
+         <div class="piano-key white-key" data-key-num="24"><span id="A2" class="key-label">I<br>A</span></div><!-- ラ -->
+         <div class="piano-key black-key" data-key-num="25"><span id="Bb2" class="key-label">9<br>Bb</span></div><!-- ラ# -->
+         <div class="piano-key white-key" data-key-num="26"><span id="B2" class="key-label">O<br>B</span></div><!-- シ -->
+         <div class="piano-key white-key" data-key-num="27"><span id="C3" class="key-label">P<br>C</span></div><!-- ド -->
+         <div class="piano-key black-key" data-key-num="28"><span id="C#3" class="key-label">-<br>C#</span></div><!-- ド# -->
+         <div class="piano-key white-key" data-key-num="29"><span id="D3" class="key-label">´<br>D</span></div><!-- レ -->
+         <div class="piano-key black-key" data-key-num="30"><span id="Eb3" class="key-label">=<br>Eb</span></div><!-- レ# -->
+         <div class="piano-key white-key" data-key-num="31"><span id="E3" class="key-label">[<br>E</span></div><!-- ミ -->
+         <div class="piano-key white-key" data-key-num="32"><span id="F3" class="key-label">Z<br>F</span></div><!-- ファ -->
+         <div class="piano-key black-key" data-key-num="33"><span id="F#3" class="key-label">S<br>F#</span></div><!-- ファ# -->
+         <div class="piano-key white-key" data-key-num="34"><span id="G3" class="key-label">X<br>G</span></div><!-- ソ -->
+         <div class="piano-key black-key" data-key-num="35"><span id="Ab3" class="key-label">D<br>Ab</span></div><!-- ソ# -->
+         <div class="piano-key white-key" data-key-num="36"><span id="A3" class="key-label">C<br>A</span></div><!-- ラ -->
+         <div class="piano-key black-key" data-key-num="37"><span id="Bb3" class="key-label">F<br>Bb</span></div><!-- ラ# -->
+         <div class="piano-key white-key" data-key-num="38"><span id="B3" class="key-label">V<br>B</span></div><!-- シ -->
+         <div class="piano-key white-key" data-key-num="39"><span id="C4" class="key-label">B<br>C</span></div><!-- ド -->
+         <div class="piano-key black-key" data-key-num="40"><span id="C#4" class="key-label">H<br>C#</span></div><!-- ド# -->
+         <div class="piano-key white-key" data-key-num="41"><span id="D4" class="key-label">N<br>D</span></div><!-- レ -->
+         <div class="piano-key black-key" data-key-num="42"><span id="Eb4" class="key-label">J<br>Eb</span></div><!-- レ# -->
+         <div class="piano-key white-key" data-key-num="43"><span id="E4" class="key-label">M<br>E</span></div><!-- ミ -->
+         <div class="piano-key white-key" data-key-num="44"><span id="F4" class="key-label">,<br>F</span></div><!-- ファ -->
+         <div class="piano-key black-key" data-key-num="45"><span id="F#4" class="key-label">L<br>F#</span></div><!-- ファ# -->
+         <div class="piano-key white-key" data-key-num="46"><span id="G4" class="key-label">.<br>G</span></div><!-- ソ -->
+         <div class="piano-key black-key" data-key-num="47"><span id="Ab4" class="key-label">Ç<br>Ab</span></div><!-- ソ# -->
+         <div class="piano-key white-key" data-key-num="48"><span id="A4" class="key-label">;<br>A</span></div><!-- ラ -->
+         <div class="piano-key black-key" data-key-num="49"><span id="Bb4" class="key-label">~<br>Bb</span></div><!-- ラ# -->
+         <div class="piano-key white-key" data-key-num="50"><span id="B4" class="key-label">]<br>B</span></div><!-- シ -->
+         <div class="piano-key white-key" data-key-num="51"><span id="C5" class="key-label">Up<br>C</span></div><!-- ド -->
+         <div class="piano-key black-key" data-key-num="52"><span id="C#5" class="key-label">C#</span></div><!-- ド# -->
+         <div class="piano-key white-key" data-key-num="53"><span id="D5" class="key-label">D</span></div><!-- レ -->
+         <div class="piano-key black-key" data-key-num="54"><span id="Eb5" class="key-label">Eb</span></div><!-- レ# -->
+         <div class="piano-key white-key" data-key-num="55"><span id="E5" class="key-label">E</span></div><!-- ミ -->
+         <div class="piano-key white-key" data-key-num="56"><span id="F5" class="key-label">F</span></div><!-- ファ -->
+         <div class="piano-key black-key" data-key-num="57"><span id="F#5" class="key-label">F#</span></div><!-- ファ# -->
+         <div class="piano-key white-key" data-key-num="58"><span id="G5" class="key-label">G</span></div><!-- ソ -->
+         <div class="piano-key black-key" data-key-num="59"><span id="Ab5" class="key-label">Ab</span></div><!-- ソ# -->
+         <div class="piano-key white-key" data-key-num="60"><span id="A5" class="key-label">A</span></div><!-- ラ -->
+         <div class="piano-key black-key" data-key-num="61"><span id="Bb5" class="key-label">Bb</span></div><!-- ラ# -->
+         <div class="piano-key white-key" data-key-num="62"><span id="B5" class="key-label">B</span></div><!-- シ -->
+         <div class="piano-key white-key" data-key-num="63"><span id="C6" class="key-label">C</span></div><!-- ド -->
+
+         
+      </div>
+   </div>
+   <div class="opScales">
+    Scales
+   </div>
+   <div class="scales">
+    <button class="scale" onclick="atualizarEscala(0)">None</button>
+    <button class="scale" onclick="atualizarEscala(1)">C</button>
+    <button class="scale" onclick="atualizarEscala(2)">C#</button>
+    <button class="scale" onclick="atualizarEscala(3)">D</button>
+    <button class="scale" onclick="atualizarEscala(4)">Eb</button>
+    <button class="scale" onclick="atualizarEscala(5)">E</button>
+    <button class="scale" onclick="atualizarEscala(6)">F</button>
+    <button class="scale" onclick="atualizarEscala(7)">F#</button>
+    <button class="scale" onclick="atualizarEscala(8)">G</button>
+    <button class="scale" onclick="atualizarEscala(9)">Ab</button>
+    <button class="scale" onclick="atualizarEscala(10)">A</button>
+    <button class="scale" onclick="atualizarEscala(11)">Bb</button>
+    <button class="scale" onclick="atualizarEscala(12)">B</button>
+   </div>
+
+   <div class="opcoes">
+      Config:
+   </div>
+   <br>
+   
+   <div class="sustains">
+      <button class="invisible"></button>
+      <button class="sustain" onclick="atualizarValor(0)">Held Key</button>
+      <button class="sustain" onclick="atualizarValor(1)">Sustain</button>
+      <button class="sustain"onclick="atualizarValor(4)">Midle Sustain</button>
+      <button class="sustain" onclick="atualizarValor(10)">No Sustain</button>
+      <button class="invisible"></button>
+   </div>
+   
+   <div class="exemplo">
+   </div>
+   <script src="./assets/main.js"></script>
+</body>
+
+</html>
