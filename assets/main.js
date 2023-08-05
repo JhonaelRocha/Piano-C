@@ -19,7 +19,56 @@ function Transpose(value) {
 
 
 // 変数宣言
-const path = "./assets/sounds/"             // オーディオファイルのパス
+
+//Reset
+
+let path = "./assets/grandpiano/"  
+document.addEventListener("DOMContentLoaded", function() {
+    path = "./assets/grandpiano/"
+            for (i = 0; i <= 63; i++) {
+                let sound = new Audio(path + (i + (valor)) + ".wav")
+                sound.volume = 0
+                pianoSounds.push(sound)
+            }
+            console.log("Piano")
+    suaFuncao();
+});
+//--------
+
+function suaFuncao() {
+    console.log("???");
+}
+function trocarPath(value){
+    pianoSounds.splice(0, pianoSounds.length)
+    switch(value){
+        case 0:
+            path = "./assets/piano/"
+            for (i = 0; i <= 63; i++) {
+                let sound = new Audio(path + (i + (valor)) + ".wav")
+                sound.volume = 0
+                pianoSounds.push(sound)
+            }
+            console.log("Piano")
+        break;
+        case 1:
+            path = "./assets/sounds/"
+            for (i = 0; i <= 63; i++) {
+                let sound = new Audio(path + (i + (valor)) + ".wav")
+                sound.volume = 0
+                pianoSounds.push(sound)
+            }
+            console.log("8-bits")
+        case 2:
+            path = "./assets/grandpiano/"
+            for (i = 0; i <= 63; i++) {
+                let sound = new Audio(path + (i + (valor)) + ".wav")
+                sound.volume = 0
+                pianoSounds.push(sound)
+            }
+            console.log("Grand Piano")
+    }
+}
+           // オーディオファイルのパス 
 const keyMap = [
     { pcKey: "q", pianoKey: 12 },
     { pcKey: "2", pianoKey: 13 },
@@ -91,11 +140,7 @@ const blackKeys = document.querySelectorAll(".black-key")   // 黒鍵
 // 初期処理
 // Audioオブジェクトを作成セット
 
-for (i = 0; i <= 63; i++) {
-    let sound = new Audio(path + (i + (valor)) + ".wav")
-    sound.volume = 0
-    pianoSounds.push(sound)
-}
+
 
 
 // タッチ対応判定

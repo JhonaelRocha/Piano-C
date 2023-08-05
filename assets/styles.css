@@ -65,6 +65,20 @@
     border-radius: 1rem;
     margin: 0rem 1rem 2rem;
 }
+.instruments{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    -ms-flex-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.instrument{
+    background-color: rgb(245, 245, 245);
+    color: black;
+    border-color: transparent;
+    border-radius: 1rem;
+    margin: 0rem 1rem 2rem;
+}
 
 
 
