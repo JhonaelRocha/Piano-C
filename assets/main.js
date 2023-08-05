@@ -1,6 +1,6 @@
 var audio = new Audio();
 var valor = -24;
-var intensidadeSus = 4
+var intensidadeSus = 3
 
 function Tocar(som) {
     audio.src = som;
@@ -25,17 +25,23 @@ const keyMap = [
     { pcKey: "2", pianoKey: 13 },
     { pcKey: "w", pianoKey: 14 },
     { pcKey: "e", pianoKey: 15 },
+    { pcKey: "é", pianoKey: 15 },
     { pcKey: "4", pianoKey: 16 },
     { pcKey: "r", pianoKey: 17 },
     { pcKey: "5", pianoKey: 18 },
     { pcKey: "t", pianoKey: 19 },
     { pcKey: "y", pianoKey: 20 },
+    { pcKey: "ý", pianoKey: 20 },
     { pcKey: "7", pianoKey: 21 },
     { pcKey: "u", pianoKey: 22 },
+    { pcKey: "ú", pianoKey: 22 },
     { pcKey: "8", pianoKey: 23 },
     { pcKey: "i", pianoKey: 24 },
+    { pcKey: "í", pianoKey: 24 },
     { pcKey: "9", pianoKey: 25 },
     { pcKey: "o", pianoKey: 26 },
+    { pcKey: "ó", pianoKey: 26 },
+    { pcKey: "õ", pianoKey: 26 },
     { pcKey: "p", pianoKey: 27 },
     { pcKey: "-", pianoKey: 28 },
     { pcKey: "BracketLeft", pianoKey: 29 }, // ´ 
@@ -51,6 +57,7 @@ const keyMap = [
     { pcKey: "b", pianoKey: 39 },
     { pcKey: "h", pianoKey: 40 },
     { pcKey: "n", pianoKey: 41 },
+    { pcKey: "ñ", pianoKey: 41 },
     { pcKey: "j", pianoKey: 42 },
     { pcKey: "m", pianoKey: 43 },
     { pcKey: ",", pianoKey: 44 },
