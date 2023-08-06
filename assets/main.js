@@ -17,6 +17,26 @@ function Transpose(value) {
     window.location.reload();
 }
 
+function showKeys(value){
+    
+    if(value == 1){
+        const spans = document.querySelectorAll("span.key-label");
+        spans.forEach(span => {
+            
+            if(span.style.visibility == 'hidden'){
+                value = 0;
+            }
+            span.style.visibility = 'hidden';
+        });
+    }
+    if(value == 0){
+        const spans = document.querySelectorAll("span.key-label");
+        spans.forEach(span => {
+            span.style.visibility = 'visible';
+        });
+    }
+}
+
 
 // 変数宣言
 
@@ -329,6 +349,10 @@ function atualizarValor(num) {
     intensidadeSus = num;
 }
 function atualizarEscala(num) {
+    const spans = document.querySelectorAll("span.key-label");
+        spans.forEach(span => {
+            span.style.visibility = 'visible';
+        });
     switch (num) {
         case 0: // None
             for (let i = 1; i <= 5; i++) {
