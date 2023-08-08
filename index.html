@@ -32,6 +32,9 @@
    <div class="opcoes">
       Piano
    </div>
+   <blockquote><i style="font-weight: 300;">Use Notação de Acordes para realizar arpejos. </i><i style="font-weight: 200;">Ex : </i><i>C Cm(c) C# C7 Cdim(C°)</i></blockquote>
+   <blockquote><i style="font-weight: 300;">Use <b>i (+1)</b> (Até 5 por vez) ou <b>de (-1)</b> para realizar inverções nos arpejos . </i><i style="font-weight: 200;">Ex : </i><i>C iiiii ii D de F i Cdim</i></blockquote>
+   <blockquote></blockquote>
    <br>
    <br>
    <br>
@@ -106,7 +109,11 @@
          
       </div>
    </div>
-   
+   <div class="inputsArpejos">
+       <input type="text" id="chordInput" placeholder="Chord">
+       <button id="arpejo" onclick="playArpejo()">Arpejo</button>
+   </div>
+   <br>
    <div class="opScales">
     Scales
    </div>
@@ -131,8 +138,10 @@
    </div>
    <br>
    
+   
    <div class="sustains">
       <button class="invisible"></button>
+      
       <button class="sustain" onclick="atualizarValor(0)">Held Key</button>
       <button class="sustain" onclick="atualizarValor(1)">Sustain</button>
       <button class="sustain"onclick="atualizarValor(3)">Midle Sustain</button>

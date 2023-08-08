@@ -17,19 +17,19 @@ function Transpose(value) {
     window.location.reload();
 }
 
-function showKeys(value){
-    
-    if(value == 1){
+function showKeys(value) {
+
+    if (value == 1) {
         const spans = document.querySelectorAll("span.key-label");
         spans.forEach(span => {
-            
-            if(span.style.visibility == 'hidden'){
+
+            if (span.style.visibility == 'hidden') {
                 value = 0;
             }
             span.style.visibility = 'hidden';
         });
     }
-    if(value == 0){
+    if (value == 0) {
         const spans = document.querySelectorAll("span.key-label");
         spans.forEach(span => {
             span.style.visibility = 'visible';
@@ -42,15 +42,15 @@ function showKeys(value){
 
 //Reset
 
-let path = "./assets/grandpiano/"  
-document.addEventListener("DOMContentLoaded", function() {
+let path = "./assets/grandpiano/"
+document.addEventListener("DOMContentLoaded", function () {
     path = "./assets/grandpiano/"
-            for (i = 0; i <= 63; i++) {
-                let sound = new Audio(path + (i + (valor)) + ".wav")
-                sound.volume = 0
-                pianoSounds.push(sound)
-            }
-            console.log("Piano")
+    for (i = 0; i <= 63; i++) {
+        let sound = new Audio(path + (i + (valor)) + ".wav")
+        sound.volume = 0
+        pianoSounds.push(sound)
+    }
+    console.log("Piano")
     suaFuncao();
 });
 //--------
@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function() {
 function suaFuncao() {
     console.log("???");
 }
-function trocarPath(value){
+function trocarPath(value) {
     pianoSounds.splice(0, pianoSounds.length)
-    switch(value){
+    switch (value) {
         case 0:
             path = "./assets/piano/"
             for (i = 0; i <= 63; i++) {
@@ -69,7 +69,7 @@ function trocarPath(value){
                 pianoSounds.push(sound)
             }
             console.log("Piano")
-        break;
+            break;
         case 1:
             path = "./assets/sounds/"
             for (i = 0; i <= 63; i++) {
@@ -88,7 +88,10 @@ function trocarPath(value){
             console.log("Grand Piano")
     }
 }
-           // オーディオファイルのパス 
+
+
+
+// オーディオファイルのパス 
 const keyMap = [
     { pcKey: "q", pianoKey: 12 },
     { pcKey: "2", pianoKey: 13 },
@@ -160,6 +163,296 @@ const blackKeys = document.querySelectorAll(".black-key")   // 黒鍵
 // 初期処理
 // Audioオブジェクトを作成セット
 
+//#region Arpejos Chords
+let isArpejo = false;
+var Chord = {
+    C: [3, 7, 10, 15]
+};
+
+function Invert(chord) {
+    const invertedChord = [...chord]
+    invertedChord.shift()
+    _segundoMembro = invertedChord.shift()
+    console.log(_segundoMembro)
+    invertedChord.unshift(_segundoMembro)
+    invertedChord.push(_segundoMembro + 12)
+    console.log(invertedChord)
+    return invertedChord
+}
+function DeInvert(chord) {
+    const invertedChord = [...chord]
+    invertedChord.pop()
+    _terceiroMembro = invertedChord.pop()
+    invertedChord.push(_terceiroMembro)
+    invertedChord.unshift(_terceiroMembro - 12)
+    console.log(invertedChord)
+    return invertedChord
+}
+var Chord = {
+    C: [3, 7, 10, 15]
+}
+function playArpejo() {
+    try {
+        const chord = document.getElementById('chordInput').value;
+        chordKeys = []
+        _chordsEscolhidos = chord.split(' ')
+        console.log(_chordsEscolhidos)
+        for (let i = 0; i < _chordsEscolhidos.length; i++) {
+            switch (_chordsEscolhidos[i]) {
+                case 'C':
+                    chordKeys.push(...Chord.C)
+                    break;
+                case 'C7':
+                    chordKeys.push(3, 7, 10, 13)
+                    break;
+                case 'Cm':
+                case 'c':
+                    chordKeys.push(3, 6, 10, 15)
+                    break;
+                case 'Cdim':
+                case 'C°':
+                    chordKeys.push(3, 6, 9, 15)
+                    break;
+                case 'C#':
+                    chordKeys.push(4, 8, 11, 16)
+                    break;
+                case 'C#7':
+                    chordKeys.push(4, 8, 11, 14)
+                    break;
+                case 'C#m':
+                case 'c#':
+                    chordKeys.push(4, 7, 11, 16)
+                    break;
+                case 'C#dim':
+                case 'C#°':
+                    chordKeys.push(4, 7, 10, 16)
+                    break;
+                case 'D':
+                    chordKeys.push(5, 9, 12, 17)
+                    break;
+                case 'D7':
+                    chordKeys.push(5, 9, 12, 15)
+                    break;
+                case 'Dm':
+                case 'd':
+                    chordKeys.push(5, 8, 12, 17)
+                    break;
+                case 'Ddim':
+                    chordKeys.push(5, 8, 11, 17)
+                    break;
+                case 'Eb':
+                    chordKeys.push(6, 10, 13, 18)
+                    break;
+                case 'Eb7':
+                    chordKeys.push(6, 10, 13, 16)
+                    break;
+                case 'Ebm':
+                case 'eb':    
+                    chordKeys.push(6, 9, 13, 18)
+                    break;
+                case 'Ebdim':
+                case 'Eb°':
+                    chordKeys.push(6, 9, 12, 18)
+                    break;
+                case 'E':
+                    chordKeys.push(7, 11, 14, 19)
+                    break;
+                case 'E7':
+                    chordKeys.push(7, 11, 14, 17)
+                    break;
+                case 'Em':
+                case 'e':
+                    chordKeys.push(7, 10, 14, 19)
+                    break;
+                case 'Edim':
+                case 'E°':
+                    chordKeys.push(7, 10, 13, 19)
+                    break;
+                case 'F':
+                    chordKeys.push(8, 12, 15, 20)
+                    break;
+                case 'F7':
+                    chordKeys.push(8, 12, 15, 18)
+                    break;
+                case 'Fm':
+                case 'f':
+                    chordKeys.push(8, 11, 15, 20)
+                    break;
+                case 'Fdim':
+                case 'F°':
+                    chordKeys.push(8, 11, 14, 20)
+                    break;
+                case 'F#':
+                    chordKeys.push(9, 13, 16, 21)
+                    break;
+                case 'F#7':
+                    chordKeys.push(9, 13, 16, 19)
+                    break;
+                case 'F#m':
+                case 'f#':
+                    chordKeys.push(9, 12, 16, 21)
+                    break;
+                case 'F#dim':
+                case 'F#°':
+                    chordKeys.push(9, 12, 15, 21)
+                    break;
+                case 'G':
+                    chordKeys.push(10, 14, 17, 22)
+                    break;
+                case 'G7':
+                    chordKeys.push(10, 14, 17, 20)
+                    break;
+                case 'Gm':
+                case 'g':
+                    chordKeys.push(10, 13, 17, 22)
+                    break;
+                case 'Gdim':
+                case 'G°':
+                    chordKeys.push(10, 13, 16, 22)
+                    break;
+                case 'Ab':
+                    chordKeys.push(11, 15, 18, 23)
+                    break;
+                case 'Ab7':
+                    chordKeys.push(11, 15, 18, 21)
+                    break;
+                case 'Abm':
+                case 'ab':
+                    chordKeys.push(11, 14, 18, 23)
+                    break;
+                case 'Abdim':
+                case 'Ab°':
+                    chordKeys.push(11, 14, 17, 23)
+                    break;
+                case 'A':
+                    chordKeys.push(0, 4, 7, 12)
+                    break;
+                case 'A7':
+                    chordKeys.push(0, 4, 7, 10)
+                    break;
+                case 'Am':
+                case 'a':
+                    chordKeys.push(0, 3, 7, 12)
+                    break;
+                case 'Adim':
+                case 'A°':
+                    chordKeys.push(0, 3, 6, 12)
+                    break;
+                case 'Bb':
+                    chordKeys.push(1, 5, 8, 13)
+                    break;
+                case 'Bb7':
+                    chordKeys.push(1, 5, 8, 11)
+                    break;
+                case 'Bbm':
+                case 'bb':
+                    chordKeys.push(1, 4, 8, 13)
+                    break;
+                case 'Bbdim':
+                case 'Bb°':
+                    chordKeys.push(1, 4, 7, 13)
+                    break;
+                case 'B':
+                    chordKeys.push(2, 6, 9, 14)
+                    break;
+                case 'B7':
+                    chordKeys.push(2, 6, 9, 12)
+                    break;
+                case 'Bm':
+                case 'b':
+                    chordKeys.push(2, 5, 9, 14)
+                    break;
+                case 'Bdim':
+                case 'B°':
+                    chordKeys.push(2, 5, 8, 14)
+                    break;
+                case 'i':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Invert(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'ii':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Invert(Invert(removidos))
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'iii':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Invert(Invert(Invert(removidos)))
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'iiii':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Invert(Invert(Invert(Invert(removidos))))
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'iiiii':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Invert(Invert(Invert(Invert(Invert(removidos)))))
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'de':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = DeInvert(removidos)
+                    chordKeys.push(..._paraAdicionar)
+            }
+        }
+
+
+    } catch {
+        console.log("Valor inválido")
+    }
+
+    if (isArpejo) {
+        isArpejo = false;
+        document.getElementById('chordInput').value = ''
+        document.getElementById('arpejo').textContent = 'Arpejo'
+        console.log(isArpejo)
+    } else {
+        isArpejo = true;
+        console.log(isArpejo)
+        document.getElementById('arpejo').textContent = 'Stop'
+    }
+
+    if (isArpejo) {
+        const keysToPress = chordKeys; // Piano key numbers to press
+        const interval = 500; // Interval in milliseconds (0.5 seconds)
+        const loopDelay = 0; // Delay before starting the loop again (2 seconds)
+
+        function pressKey(index) {
+            if (index >= keysToPress.length) {
+                return; // All keys pressed, exit
+            }
+
+            const keyNum = keysToPress[index];
+            pressPianoKey(keyNum); // Press the key
+            setTimeout(() => {
+                releasePianoKey(keyNum); // Release the key after the interval
+                pressKey(index + 1); // Press the next key recursively
+            }, interval);
+        }
+
+        function playLoop() {
+            pressKey(0); // Start pressing the keys
+
+            setTimeout(() => {
+                if (isArpejo) {
+                    playLoop(); // Restart the loop after loopDelay
+                } else {
+                    return
+                }
+
+            }, loopDelay + interval * keysToPress.length);
+
+        }
+
+        playLoop(); // Start the loop
+    } else {
+        return
+    }
+
+}
+//#endregion
 
 
 
@@ -350,9 +643,9 @@ function atualizarValor(num) {
 }
 function atualizarEscala(num) {
     const spans = document.querySelectorAll("span.key-label");
-        spans.forEach(span => {
-            span.style.visibility = 'visible';
-        });
+    spans.forEach(span => {
+        span.style.visibility = 'visible';
+    });
     switch (num) {
         case 0: // None
             for (let i = 1; i <= 5; i++) {
