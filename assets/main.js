@@ -185,7 +185,7 @@ function DeInvert(chord) {
     _terceiroMembro = invertedChord.pop()
     invertedChord.push(_terceiroMembro)
     invertedChord.unshift(_terceiroMembro - 12)
-    console.log(invertedChord)
+    
     return invertedChord
 }
 var Chord = {
@@ -395,12 +395,21 @@ function playArpejo() {
                     removidos = chordKeys.splice(-4)
                     _paraAdicionar = DeInvert(removidos)
                     chordKeys.push(..._paraAdicionar)
+                    break;
+                case '':
+                    alert("Empty Chord")
+                    isArpejo = true;
+                    break;
+                default:
+                    alert("Invalid Value")
+                    isArpejo = true;
+                    break;
             }
         }
 
 
     } catch {
-        console.log("Valor inválido")
+        alert("An error has occurred")
     }
 
     if (isArpejo) {
