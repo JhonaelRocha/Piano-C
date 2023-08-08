@@ -33,8 +33,9 @@
       Piano
    </div>
    <blockquote><i style="font-weight: 300;">Use Notação de Acordes para realizar arpejos. </i><i style="font-weight: 200;">Ex : </i><i>C Cm(c) C# C7 Cdim(C°)</i></blockquote>
-   <blockquote><i style="font-weight: 300;">Use <b>i (+1)</b> (Até 5 por vez) ou <b>de (-1)</b> para realizar inverções nos arpejos . </i><i style="font-weight: 200;">Ex : </i><i>C iiiii ii D de F i Cdim</i></blockquote>
-   <blockquote></blockquote>
+   <blockquote><i style="font-weight: 300;">Use <b>i (+1)</b> (Até 5 por vez) ou <b>de (-1)</b> para realizar inverções, <b>r</b> para mudar a orientação e <b>s</b> para stride. </i><i style="font-weight: 200;">Ex : </i><i>C iiiii ii D de F i Cdim r</i></blockquote>
+   <blockquote><i style="font-weight: 300;">Canon in D progression :  </i><i style="font-weight: 200;"></i><i>C iii G Am iii Em F C F G</i></blockquote>
+   <blockquote><i style="font-weight: 300;">Se essa rua fosse minha progression :  </i><i style="font-weight: 200;"></i><i>Fm Fm Fm Fm C ii C ii C ii C7 ii Fm Fm Fm F7 Bbm iii Bbm iii C ii C7 ii </i></blockquote>
    <br>
    <br>
    <br>
@@ -110,8 +111,10 @@
       </div>
    </div>
    <div class="inputsArpejos">
-       <input type="text" id="chordInput" placeholder="Chord">
+       <input type="text" title="Chords" id="chordInput" placeholder="Chord Ex: C F C G">
+       <input type="number" title="Tempo" id="tempoInput" placeholder="Tempo">
        <button id="arpejo" onclick="playArpejo()">Arpejo</button>
+       
    </div>
    <br>
    <div class="opScales">

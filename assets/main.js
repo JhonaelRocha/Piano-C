@@ -1,7 +1,7 @@
 var audio = new Audio();
 var valor = -24;
 var intensidadeSus = 3
-
+document.getElementById("tempoInput").value = "120";
 function Tocar(som) {
     audio.src = som;
     audio.play();
@@ -168,7 +168,47 @@ let isArpejo = false;
 var Chord = {
     C: [3, 7, 10, 15]
 };
-
+function Stride(chord){
+    const strideChord = [...chord]
+    _primeiroMembro = strideChord.shift()
+    _segundoMembro = strideChord.shift()
+    _terceiroMembro = strideChord.shift()
+    strideChord.unshift(_segundoMembro)
+    strideChord.unshift(_terceiroMembro)
+    strideChord.unshift(_primeiroMembro)
+    return strideChord
+}
+function Triade(chord){
+    const TriadeChord = [...chord]
+    _primeiroMembro = TriadeChord.shift()
+    _segundoMembro = TriadeChord.shift()
+    _terceiroMembro = TriadeChord.shift()
+    _quartoMembro = TriadeChord.shift()
+    
+    TriadeChord.unshift(_segundoMembro)
+    TriadeChord.unshift(_terceiroMembro)
+    TriadeChord.unshift(_segundoMembro)
+    TriadeChord.unshift(_terceiroMembro)
+    TriadeChord.unshift(_segundoMembro)
+    TriadeChord.unshift(_primeiroMembro)
+    return TriadeChord
+}
+function Dueto(chord){
+    const DuetoChord = [...chord]
+    _primeiroMembro = DuetoChord.shift()
+    _segundoMembro = DuetoChord.shift()
+    _terceiroMembro = DuetoChord.shift()
+    _quartoMembro = DuetoChord.shift()
+    DuetoChord.unshift(_terceiroMembro)
+    DuetoChord.unshift(_quartoMembro)
+    DuetoChord.unshift(_terceiroMembro)
+    DuetoChord.unshift(_quartoMembro)
+    DuetoChord.unshift(_terceiroMembro)
+    DuetoChord.unshift(_quartoMembro)
+    DuetoChord.unshift(_terceiroMembro)
+    DuetoChord.unshift(_primeiroMembro)
+    return DuetoChord
+}
 function Invert(chord) {
     const invertedChord = [...chord]
     invertedChord.shift()
@@ -187,6 +227,11 @@ function DeInvert(chord) {
     invertedChord.unshift(_terceiroMembro - 12)
     
     return invertedChord
+}
+function BPMtoMS(bpm) {
+    const beatsPerSecond = bpm / 60;
+    const millisecondsPerBeat = 1000 / beatsPerSecond;
+    return millisecondsPerBeat;
 }
 var Chord = {
     C: [3, 7, 10, 15]
@@ -396,6 +441,26 @@ function playArpejo() {
                     _paraAdicionar = DeInvert(removidos)
                     chordKeys.push(..._paraAdicionar)
                     break;
+                case 'r':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = removidos.reverse()
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 's':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Stride(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case '4t':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Dueto(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case '3t':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Triade(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
                 case '':
                     alert("Empty Chord")
                     isArpejo = true;
@@ -425,9 +490,9 @@ function playArpejo() {
 
     if (isArpejo) {
         const keysToPress = chordKeys; // Piano key numbers to press
-        const interval = 500; // Interval in milliseconds (0.5 seconds)
+        const interval = BPMtoMS(document.getElementById('tempoInput').value) ; // Interval in milliseconds (0.5 seconds)
         const loopDelay = 0; // Delay before starting the loop again (2 seconds)
-
+        
         function pressKey(index) {
             if (index >= keysToPress.length) {
                 return; // All keys pressed, exit
@@ -443,7 +508,6 @@ function playArpejo() {
 
         function playLoop() {
             pressKey(0); // Start pressing the keys
-
             setTimeout(() => {
                 if (isArpejo) {
                     playLoop(); // Restart the loop after loopDelay
@@ -451,10 +515,9 @@ function playArpejo() {
                     return
                 }
 
-            }, loopDelay + interval * keysToPress.length);
+            }, loopDelay + (interval * keysToPress.length + (2.5 * keysToPress.length ))); // Gambiarra
 
         }
-
         playLoop(); // Start the loop
     } else {
         return
