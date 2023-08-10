@@ -25,17 +25,19 @@
     </div>
     <br>
     <div class="instruments">
-        <button class="instrument" onclick="trocarPath(0)">Bright Piano</button>
-        <button class="instrument" onclick="trocarPath(1)">8 - bits</button>
-        <button class="instrument" onclick="trocarPath(2)">Grand Piano</button>
+        <label><input type="radio" name="instrument" class="instrument" checked onclick="trocarPath(2)">Grand Piano</label>
+        <label><input type="radio" name="instrument" class="instrument" onclick="trocarPath(0)">Bright Piano</label>
+        <label><input type="radio" name="instrument" class="instrument" onclick="trocarPath(1)">8 - bits</label>
+        
     </div>
    <div class="opcoes">
-      Piano
+      Piano 
    </div>
    <blockquote><i style="font-weight: 300;">Use Notação de Acordes para realizar arpejos.<a href="/chords.html" target="_blank">Chords </a> </i><i style="font-weight: 200;">Ex : </i><i>C Cm(c) C# C7 Cdim(C°) </i></blockquote>
    <blockquote><i style="font-weight: 300;">Use <b>i (+1)</b> (Até 5 por vez) ou <b>de (-1)</b> para realizar inverções, <b>r</b> para mudar a orientação e <b>s</b> para stride. <a href="/tags.html" target="_blank">Tags </a></i> <i style="font-weight: 200;">Ex : </i><i>C iiiii ii D de F i Cdim r</i></blockquote>
    <blockquote><i style="font-weight: 300;">Canon in D progression :  </i><i style="font-weight: 200;"></i><i>C iii G Am iii Em F C F G</i></blockquote>
    <blockquote><i style="font-weight: 300;">Se essa rua fosse minha progression :  </i><i style="font-weight: 200;"></i><i>Fm Fm Fm Fm C ii C ii C ii C7 ii Fm Fm Fm F7 Bbm iii Bbm iii C ii C7 ii </i></blockquote>
+   <input type="checkbox" class="onoff" onclick="showKeys(1)">  On / Off Keys
    <br>
    <br>
    <br>
@@ -116,26 +118,28 @@
        <button id="arpejo" onclick="playArpejo()">Arpejo</button>
        <button id="arpejo" onclick="Interromper()">Break</button>
        
+       
    </div>
    <br>
    <div class="opScales">
     Scales
    </div>
    <div class="scales">
-    <button class="scale" onclick="atualizarEscala(0)">None</button>
-    <button class="scale" onclick="atualizarEscala(1)">C</button>
-    <button class="scale" onclick="atualizarEscala(2)">C#</button>
-    <button class="scale" onclick="atualizarEscala(3)">D</button>
-    <button class="scale" onclick="atualizarEscala(4)">Eb</button>
-    <button class="scale" onclick="atualizarEscala(5)">E</button>
-    <button class="scale" onclick="atualizarEscala(6)">F</button>
-    <button class="scale" onclick="atualizarEscala(7)">F#</button>
-    <button class="scale" onclick="atualizarEscala(8)">G</button>
-    <button class="scale" onclick="atualizarEscala(9)">Ab</button>
-    <button class="scale" onclick="atualizarEscala(10)">A</button>
-    <button class="scale" onclick="atualizarEscala(11)">Bb</button>
-    <button class="scale" onclick="atualizarEscala(12)">B</button>
-   </div>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(0)" checked>None</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(1)">C</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(2)">C#</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(3)">D</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(4)">Eb</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(5)">E</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(6)">F</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(7)">F#</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(8)">G</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(9)">Ab</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(10)">A</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(11)">Bb</label>
+    <label><input type="radio" name="scale" class="scale" onclick="atualizarEscala(12)">B</label>
+    
+</div>
 
    <div class="opcoes">
       Config:
@@ -144,15 +148,15 @@
    
    
    <div class="sustains">
-      <button class="invisible"></button>
-      
-      <button class="sustain" onclick="atualizarValor(0)">Held Key</button>
-      <button class="sustain" onclick="atualizarValor(1)">Sustain</button>
-      <button class="sustain"onclick="atualizarValor(3)">Midle Sustain</button>
-      <button class="sustain" onclick="atualizarValor(10)">No Sustain</button>
-      <button class="sustain" onclick="showKeys(1)">On / Off Keys</button>
-      <button class="invisible"></button>
+    <button class="invisible"></button>
+    <label><input class="sustain" type="radio" name="sustainOption" value="0" onclick="atualizarValor(0)">Held Key</label>
+    <label><input class="sustain" type="radio" name="sustainOption" value="1" onclick="atualizarValor(1)">Sustain</label>
+    <label><input class="sustain" type="radio" name="sustainOption" value="3" checked onclick="atualizarValor(3)">Midle Sus</label>
+    <label><input class="sustain" type="radio" name="sustainOption" value="10" onclick="atualizarValor(10)">No Sus</label>
+    
+    <button class="invisible"></button>
    </div>
+   
    
    
 
