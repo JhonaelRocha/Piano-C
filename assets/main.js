@@ -165,10 +165,13 @@ const blackKeys = document.querySelectorAll(".black-key")   // 黒鍵
 
 //#region Arpejos Chords
 let isArpejo = false;
+let interromper = false;
 var Chord = {
     C: [3, 7, 10, 15]
 };
-function Stride(chord){
+
+
+function Stride(chord) {
     const strideChord = [...chord]
     _primeiroMembro = strideChord.shift()
     _segundoMembro = strideChord.shift()
@@ -178,13 +181,13 @@ function Stride(chord){
     strideChord.unshift(_primeiroMembro)
     return strideChord
 }
-function Triade(chord){
+function Triade(chord) {
     const TriadeChord = [...chord]
     _primeiroMembro = TriadeChord.shift()
     _segundoMembro = TriadeChord.shift()
     _terceiroMembro = TriadeChord.shift()
     _quartoMembro = TriadeChord.shift()
-    
+
     TriadeChord.unshift(_segundoMembro)
     TriadeChord.unshift(_terceiroMembro)
     TriadeChord.unshift(_segundoMembro)
@@ -193,7 +196,23 @@ function Triade(chord){
     TriadeChord.unshift(_primeiroMembro)
     return TriadeChord
 }
-function Dueto(chord){
+function Quarteto(chord) {
+    const QuartetoChord = [...chord]
+    _primeiroMembro = QuartetoChord.shift()
+    _segundoMembro = QuartetoChord.shift()
+    _terceiroMembro = QuartetoChord.shift()
+    _quartoMembro = QuartetoChord.shift()
+    QuartetoChord.unshift(_segundoMembro)
+    QuartetoChord.unshift(_terceiroMembro)
+    QuartetoChord.unshift(_segundoMembro)
+    QuartetoChord.unshift(_terceiroMembro)
+    QuartetoChord.unshift(_segundoMembro)
+    QuartetoChord.unshift(_terceiroMembro)
+    QuartetoChord.unshift(_segundoMembro)
+    QuartetoChord.unshift(_primeiroMembro)
+    return QuartetoChord
+}
+function Dueto(chord) {
     const DuetoChord = [...chord]
     _primeiroMembro = DuetoChord.shift()
     _segundoMembro = DuetoChord.shift()
@@ -209,6 +228,21 @@ function Dueto(chord){
     DuetoChord.unshift(_primeiroMembro)
     return DuetoChord
 }
+function AlternadoBaixo(chord) {
+    const BaixoChord = [...chord]
+    _primeiroMembro = BaixoChord.shift()
+    _segundoMembro = BaixoChord.shift()
+    _terceiroMembro = BaixoChord.shift()
+    _quartoMembro = BaixoChord.shift()
+
+    BaixoChord.unshift(_terceiroMembro)
+    BaixoChord.unshift(_quartoMembro)
+    BaixoChord.unshift(_terceiroMembro)
+    BaixoChord.unshift(_quartoMembro)
+    BaixoChord.unshift(_terceiroMembro)
+    BaixoChord.unshift(_primeiroMembro)
+    return BaixoChord
+}
 function Invert(chord) {
     const invertedChord = [...chord]
     invertedChord.shift()
@@ -219,13 +253,27 @@ function Invert(chord) {
     console.log(invertedChord)
     return invertedChord
 }
+function Invert2(chord) {
+    const invertedChord = [...chord]
+
+    _primeiroMembro = invertedChord.shift()
+    _segundoMembro = invertedChord.shift()
+    _terceiroMembro = invertedChord.shift()
+    _quartoMembro = invertedChord.shift()
+
+    invertedChord.push(_segundoMembro)
+    invertedChord.push(_terceiroMembro)
+    invertedChord.push(_quartoMembro)
+    invertedChord.push(_primeiroMembro + 12)
+    return invertedChord
+}
 function DeInvert(chord) {
     const invertedChord = [...chord]
     invertedChord.pop()
     _terceiroMembro = invertedChord.pop()
     invertedChord.push(_terceiroMembro)
     invertedChord.unshift(_terceiroMembro - 12)
-    
+
     return invertedChord
 }
 function BPMtoMS(bpm) {
@@ -243,6 +291,7 @@ function playArpejo() {
         _chordsEscolhidos = chord.split(' ')
         console.log(_chordsEscolhidos)
         for (let i = 0; i < _chordsEscolhidos.length; i++) {
+            let tem7 = false;
             switch (_chordsEscolhidos[i]) {
                 case 'C':
                     chordKeys.push(...Chord.C)
@@ -254,23 +303,43 @@ function playArpejo() {
                 case 'c':
                     chordKeys.push(3, 6, 10, 15)
                     break;
+                case 'Cm7':
+                    chordKeys.push(3, 6, 10, 13)
+                    break;
                 case 'Cdim':
                 case 'C°':
                     chordKeys.push(3, 6, 9, 15)
                     break;
+                case 'CMaj7':
+                    chordKeys.push(3, 7, 10, 14)
+                    break;
                 case 'C#':
+                case 'Db':
                     chordKeys.push(4, 8, 11, 16)
                     break;
                 case 'C#7':
+                case 'Db7':
                     chordKeys.push(4, 8, 11, 14)
                     break;
                 case 'C#m':
                 case 'c#':
+                case 'Dbm':
+                case 'db':
                     chordKeys.push(4, 7, 11, 16)
+                    break;
+                case 'C#m7':
+                case 'Dbm7':
+                    chordKeys.push(4, 7, 11, 14)
                     break;
                 case 'C#dim':
                 case 'C#°':
+                case 'Dbdim':
+                case 'Db°':
                     chordKeys.push(4, 7, 10, 16)
+                    break;
+                case 'C#Maj7':
+                case 'DbMaj7':
+                    chordKeys.push(4, 8, 11, 15)
                     break;
                 case 'D':
                     chordKeys.push(5, 9, 12, 17)
@@ -282,22 +351,42 @@ function playArpejo() {
                 case 'd':
                     chordKeys.push(5, 8, 12, 17)
                     break;
+                case 'Dm7':
+                    chordKeys.push(5, 8, 12, 15)
+                    break;
                 case 'Ddim':
                     chordKeys.push(5, 8, 11, 17)
                     break;
+                case 'DMaj7':
+                    chordKeys.push(5, 9, 12, 16)
+                    break;
                 case 'Eb':
+                case 'D#':
                     chordKeys.push(6, 10, 13, 18)
                     break;
                 case 'Eb7':
+                case 'D#7':
                     chordKeys.push(6, 10, 13, 16)
                     break;
                 case 'Ebm':
-                case 'eb':    
+                case 'eb':
+                case 'D#m':
+                case 'd#':
                     chordKeys.push(6, 9, 13, 18)
+                    break;
+                case 'Ebm7':
+                case 'D#m7':
+                    chordKeys.push(6, 9, 13, 16)
                     break;
                 case 'Ebdim':
                 case 'Eb°':
+                case 'D#dim':
+                case 'D#°':
                     chordKeys.push(6, 9, 12, 18)
+                    break;
+                case 'EbMaj7':
+                case 'D#Maj7':
+                    chordKeys.push(6, 10, 13, 17)
                     break;
                 case 'E':
                     chordKeys.push(7, 11, 14, 19)
@@ -309,9 +398,15 @@ function playArpejo() {
                 case 'e':
                     chordKeys.push(7, 10, 14, 19)
                     break;
+                case 'Em7':
+                    chordKeys.push(7, 10, 14, 17)
+                    break;
                 case 'Edim':
                 case 'E°':
                     chordKeys.push(7, 10, 13, 19)
+                    break;
+                case 'EMaj7':
+                    chordKeys.push(7, 11, 14, 18)
                     break;
                 case 'F':
                     chordKeys.push(8, 12, 15, 20)
@@ -323,23 +418,43 @@ function playArpejo() {
                 case 'f':
                     chordKeys.push(8, 11, 15, 20)
                     break;
+                case 'Fm7':
+                    chordKeys.push(8, 11, 15, 18)
+                    break;
                 case 'Fdim':
                 case 'F°':
                     chordKeys.push(8, 11, 14, 20)
                     break;
+                case 'FMaj7':
+                    chordKeys.push(8, 12, 15, 19)
+                    break;
                 case 'F#':
+                case 'Gb':
                     chordKeys.push(9, 13, 16, 21)
                     break;
                 case 'F#7':
+                case 'Gb7':
                     chordKeys.push(9, 13, 16, 19)
                     break;
                 case 'F#m':
                 case 'f#':
+                case 'Gbm':
+                case 'gb':
                     chordKeys.push(9, 12, 16, 21)
+                    break;
+                case 'F#m7':
+                case 'Gbm7':
+                    chordKeys.push(9, 12, 16, 19)
                     break;
                 case 'F#dim':
                 case 'F#°':
+                case 'Gbdim':
+                case 'Gb°':
                     chordKeys.push(9, 12, 15, 21)
+                    break;
+                case 'F#Maj7':
+                case 'GbMaj7':
+                    chordKeys.push(9, 13, 16, 20)
                     break;
                 case 'G':
                     chordKeys.push(10, 14, 17, 22)
@@ -351,23 +466,43 @@ function playArpejo() {
                 case 'g':
                     chordKeys.push(10, 13, 17, 22)
                     break;
+                case 'Gm7':
+                    chordKeys.push(10, 13, 17, 20)
+                    break;
                 case 'Gdim':
                 case 'G°':
                     chordKeys.push(10, 13, 16, 22)
                     break;
+                case 'GMaj7':
+                    chordKeys.push(10, 14, 17, 21)
+                    break;
                 case 'Ab':
+                case 'G#':
                     chordKeys.push(11, 15, 18, 23)
                     break;
                 case 'Ab7':
+                case 'G#7':
                     chordKeys.push(11, 15, 18, 21)
                     break;
                 case 'Abm':
                 case 'ab':
+                case 'G#m':
+                case 'g#':
                     chordKeys.push(11, 14, 18, 23)
+                    break;
+                case 'Abm7':
+                case 'G#m7':
+                    chordKeys.push(11, 14, 18, 21)
                     break;
                 case 'Abdim':
                 case 'Ab°':
+                case 'G#dim':
+                case 'G#°':
                     chordKeys.push(11, 14, 17, 23)
+                    break;
+                case 'AbMaj7':
+                case 'G#Maj7':
+                    chordKeys.push(11, 15, 18, 22)
                     break;
                 case 'A':
                     chordKeys.push(0, 4, 7, 12)
@@ -379,23 +514,43 @@ function playArpejo() {
                 case 'a':
                     chordKeys.push(0, 3, 7, 12)
                     break;
+                case 'Am7':
+                    chordKeys.push(0, 3, 7, 10)
+                    break;
                 case 'Adim':
                 case 'A°':
                     chordKeys.push(0, 3, 6, 12)
                     break;
+                case 'AMaj7':
+                    chordKeys.push(0, 4, 7, 11)
+                    break;
                 case 'Bb':
+                case 'A#':
                     chordKeys.push(1, 5, 8, 13)
                     break;
                 case 'Bb7':
+                case 'A#7':
                     chordKeys.push(1, 5, 8, 11)
                     break;
                 case 'Bbm':
                 case 'bb':
+                case 'A#m':
+                case 'a#':
                     chordKeys.push(1, 4, 8, 13)
+                    break;
+                case 'Bbm7':
+                case 'A#m7':
+                    chordKeys.push(1, 4, 8, 11)
                     break;
                 case 'Bbdim':
                 case 'Bb°':
+                case 'A#dim':
+                case 'A#°':
                     chordKeys.push(1, 4, 7, 13)
+                    break;
+                case 'BbMaj7':
+                case 'A#Maj7':
+                    chordKeys.push(1, 5, 8, 12)
                     break;
                 case 'B':
                     chordKeys.push(2, 6, 9, 14)
@@ -407,34 +562,115 @@ function playArpejo() {
                 case 'b':
                     chordKeys.push(2, 5, 9, 14)
                     break;
+                case 'Bm7':
+                    chordKeys.push(2, 5, 9, 12)
+                    break;
                 case 'Bdim':
                 case 'B°':
                     chordKeys.push(2, 5, 8, 14)
                     break;
+                case 'BMaj7':
+                    chordKeys.push(2, 6, 9, 13)
+                    break;
                 case 'i':
-                    removidos = chordKeys.splice(-4)
-                    _paraAdicionar = Invert(removidos)
-                    chordKeys.push(..._paraAdicionar)
+                    dividir = _chordsEscolhidos[i - 1].split('');
+
+                    for (let j = 0; j < dividir.length; j++) {
+                        if (dividir[j] === '7') {
+                            tem7 = true;
+                            break;
+                        }
+                    }
+                    if (tem7) {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert2(removidos);
+                        chordKeys.push(..._paraAdicionar);
+                    } else {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert(removidos);
+                        chordKeys.push(..._paraAdicionar);
+                    }
+
                     break;
                 case 'ii':
-                    removidos = chordKeys.splice(-4)
-                    _paraAdicionar = Invert(Invert(removidos))
-                    chordKeys.push(..._paraAdicionar)
+                    dividir = _chordsEscolhidos[i - 1].split('');
+
+                    for (let j = 0; j < dividir.length; j++) {
+                        if (dividir[j] === '7') {
+                            tem7 = true;
+                            break;
+                        }
+                    }
+                    if (tem7) {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert2(Invert2(removidos));
+                        chordKeys.push(..._paraAdicionar);
+                    } else {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert(Invert(removidos));
+                        chordKeys.push(..._paraAdicionar);
+                    }
+
                     break;
                 case 'iii':
-                    removidos = chordKeys.splice(-4)
-                    _paraAdicionar = Invert(Invert(Invert(removidos)))
-                    chordKeys.push(..._paraAdicionar)
+                    dividir = _chordsEscolhidos[i - 1].split('');
+
+                    for (let j = 0; j < dividir.length; j++) {
+                        if (dividir[j] === '7') {
+                            tem7 = true;
+                            break;
+                        }
+                    }
+                    if (tem7) {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert2(Invert2(Invert2(removidos)));
+                        chordKeys.push(..._paraAdicionar);
+                    } else {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert(Invert(Invert(removidos)));
+                        chordKeys.push(..._paraAdicionar);
+                    }
+
                     break;
                 case 'iiii':
-                    removidos = chordKeys.splice(-4)
-                    _paraAdicionar = Invert(Invert(Invert(Invert(removidos))))
-                    chordKeys.push(..._paraAdicionar)
+                    dividir = _chordsEscolhidos[i - 1].split('');
+
+                    for (let j = 0; j < dividir.length; j++) {
+                        if (dividir[j] === '7') {
+                            tem7 = true;
+                            break;
+                        }
+                    }
+                    if (tem7) {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert2(Invert2(Invert2(Invert2(removidos))));
+                        chordKeys.push(..._paraAdicionar);
+                    } else {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert(Invert(Invert(Invert(removidos))));
+                        chordKeys.push(..._paraAdicionar);
+                    }
+
                     break;
                 case 'iiiii':
-                    removidos = chordKeys.splice(-4)
-                    _paraAdicionar = Invert(Invert(Invert(Invert(Invert(removidos)))))
-                    chordKeys.push(..._paraAdicionar)
+                    dividir = _chordsEscolhidos[i - 1].split('');
+
+                    for (let j = 0; j < dividir.length; j++) {
+                        if (dividir[j] === '7') {
+                            tem7 = true;
+                            break;
+                        }
+                    }
+                    if (tem7) {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert2(Invert2(Invert2(Invert2(Invert2(removidos)))));
+                        chordKeys.push(..._paraAdicionar);
+                    } else {
+                        removidos = chordKeys.splice(-4);
+                        _paraAdicionar = Invert(Invert(Invert(Invert(Invert(removidos)))));
+                        chordKeys.push(..._paraAdicionar);
+                    }
+
                     break;
                 case 'de':
                     removidos = chordKeys.splice(-4)
@@ -451,17 +687,27 @@ function playArpejo() {
                     _paraAdicionar = Stride(removidos)
                     chordKeys.push(..._paraAdicionar)
                     break;
-                case '4t':
+                case 'al':
                     removidos = chordKeys.splice(-4)
                     _paraAdicionar = Dueto(removidos)
                     chordKeys.push(..._paraAdicionar)
                     break;
-                case '3t':
+                case 'al3':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = AlternadoBaixo(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'a4':
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = Quarteto(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
+                case 'a3':
                     removidos = chordKeys.splice(-4)
                     _paraAdicionar = Triade(removidos)
                     chordKeys.push(..._paraAdicionar)
                     break;
-                case '':
+                case ' ':
                     alert("Empty Chord")
                     isArpejo = true;
                     break;
@@ -480,7 +726,7 @@ function playArpejo() {
     if (isArpejo) {
         isArpejo = false;
         document.getElementById('chordInput').value = ''
-        document.getElementById('arpejo').textContent = 'Arpejo'
+        document.getElementById('arpejo').textContent = 'Ending'
         console.log(isArpejo)
     } else {
         isArpejo = true;
@@ -490,9 +736,9 @@ function playArpejo() {
 
     if (isArpejo) {
         const keysToPress = chordKeys; // Piano key numbers to press
-        const interval = BPMtoMS(document.getElementById('tempoInput').value) ; // Interval in milliseconds (0.5 seconds)
+        const interval = BPMtoMS(document.getElementById('tempoInput').value); // Interval in milliseconds (0.5 seconds)
         const loopDelay = 0; // Delay before starting the loop again (2 seconds)
-        
+
         function pressKey(index) {
             if (index >= keysToPress.length) {
                 return; // All keys pressed, exit
@@ -512,10 +758,16 @@ function playArpejo() {
                 if (isArpejo) {
                     playLoop(); // Restart the loop after loopDelay
                 } else {
+                    pressPianoKey(keysToPress[0])
+                    setTimeout(() => {
+                        releasePianoKey(keysToPress[0])
+                        document.getElementById('arpejo').textContent = 'Arpejo'
+                    }, interval * 4)
+
                     return
                 }
 
-            }, loopDelay + (interval * keysToPress.length + (2.5 * keysToPress.length ))); // Gambiarra
+            }, loopDelay + (interval * keysToPress.length + (2.5 * keysToPress.length))); // Gambiarra
 
         }
         playLoop(); // Start the loop
@@ -525,7 +777,9 @@ function playArpejo() {
 
 }
 //#endregion
-
+function Interromper() {
+    window.location.reload();
+}
 
 
 // タッチ対応判定
