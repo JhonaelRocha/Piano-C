@@ -2,6 +2,9 @@ var audio = new Audio();
 var valor = -24;
 var intensidadeSus = 3
 document.getElementById("tempoInput").value = "120";
+
+const counterSpan = document.getElementById("counter");
+
 function Tocar(som) {
     audio.src = som;
     audio.play();
@@ -11,10 +14,76 @@ function PararSom() {
     audio.pause();
     audio.currentTime = 0;
 }
-function Transpose(value) {
-    valor = value;
+function Transpose(v) {
+
+    
+    valor = valor + (v);
+    counterSpan.textContent = valor + 24;
+    if(valor > 0){
+        valor = 0
+        counterSpan.textContent = valor + 24;
+    }
+    if(valor < -48){
+        valor = -48
+        counterSpan.textContent = valor + 24;
+    }
     console.log(valor);
-    window.location.reload();
+    keyMap = [];
+    keyMap = [
+        { pcKey: "q", pianoKey: 12 + (valor + 24) },
+        { pcKey: "2", pianoKey: 13 + (valor + 24) },
+        { pcKey: "w", pianoKey: 14 + (valor + 24) },
+        { pcKey: "e", pianoKey: 15 + (valor + 24) },
+        { pcKey: "é", pianoKey: 15 + (valor + 24) },
+        { pcKey: "4", pianoKey: 16 + (valor + 24) },
+        { pcKey: "r", pianoKey: 17 + (valor + 24) },
+        { pcKey: "5", pianoKey: 18 + (valor + 24) },
+        { pcKey: "t", pianoKey: 19 + (valor + 24) },
+        { pcKey: "y", pianoKey: 20 + (valor + 24) },
+        { pcKey: "ý", pianoKey: 20 + (valor + 24) },
+        { pcKey: "7", pianoKey: 21 + (valor + 24) },
+        { pcKey: "u", pianoKey: 22 + (valor + 24) },
+        { pcKey: "ú", pianoKey: 22 + (valor + 24) },
+        { pcKey: "8", pianoKey: 23 + (valor + 24) },
+        { pcKey: "i", pianoKey: 24 + (valor + 24) },
+        { pcKey: "í", pianoKey: 24 + (valor + 24) },
+        { pcKey: "9", pianoKey: 25 + (valor + 24) },
+        { pcKey: "o", pianoKey: 26 + (valor + 24) },
+        { pcKey: "ó", pianoKey: 26 + (valor + 24) },
+        { pcKey: "õ", pianoKey: 26 + (valor + 24) },
+        { pcKey: "p", pianoKey: 27 + (valor + 24) },
+        { pcKey: "-", pianoKey: 28 + (valor + 24) },
+        { pcKey: "BracketLeft", pianoKey: 29 + (valor + 24) }, // ´ 
+        { pcKey: "=", pianoKey: 30 + (valor + 24) },
+        { pcKey: "[", pianoKey: 31 + (valor + 24) },
+        { pcKey: "z", pianoKey: 32 + (valor + 24) },
+        { pcKey: "s", pianoKey: 33 + (valor + 24) },
+        { pcKey: "x", pianoKey: 34 + (valor + 24) },
+        { pcKey: "d", pianoKey: 35 + (valor + 24) },
+        { pcKey: "c", pianoKey: 36 + (valor + 24) },
+        { pcKey: "f", pianoKey: 37 + (valor + 24) },
+        { pcKey: "v", pianoKey: 38 + (valor + 24) },
+        { pcKey: "b", pianoKey: 39 + (valor + 24) },
+        { pcKey: "h", pianoKey: 40 + (valor + 24) },
+        { pcKey: "n", pianoKey: 41 + (valor + 24) },
+        { pcKey: "ñ", pianoKey: 41 + (valor + 24) },
+        { pcKey: "j", pianoKey: 42 + (valor + 24) },
+        { pcKey: "m", pianoKey: 43 + (valor + 24) },
+        { pcKey: ",", pianoKey: 44 + (valor + 24) },
+        { pcKey: "l", pianoKey: 45 + (valor + 24) },
+        { pcKey: ".", pianoKey: 46 + (valor + 24) },
+        { pcKey: "ç", pianoKey: 47 + (valor + 24) },
+        { pcKey: ";", pianoKey: 48 + (valor + 24) },
+        { pcKey: "Quote", pianoKey: 49 + (valor + 24) }, // ^
+        { pcKey: "ShiftRight", pianoKey: 50 + (valor + 24) },
+        { pcKey: "]", pianoKey: 50 + (valor + 24) },
+        { pcKey: "ArrowUp", pianoKey: 51 + (valor + 24) },
+        { pcKey: "PageDown", pianoKey: 52 + (valor + 24) },
+        { pcKey: "End", pianoKey: 53 + (valor + 24) },
+        { pcKey: "\\", pianoKey: 31 + (valor + 24) },
+        { pcKey: "Enter", pianoKey: 32 + (valor + 24) }
+    ]
+
 }
 
 function showKeys(value) {
@@ -37,8 +106,6 @@ function showKeys(value) {
     }
 }
 
-
-// 変数宣言
 
 //Reset
 
@@ -92,59 +159,59 @@ function trocarPath(value) {
 
 
 // オーディオファイルのパス 
-const keyMap = [
-    { pcKey: "q", pianoKey: 12 },
-    { pcKey: "2", pianoKey: 13 },
-    { pcKey: "w", pianoKey: 14 },
-    { pcKey: "e", pianoKey: 15 },
-    { pcKey: "é", pianoKey: 15 },
-    { pcKey: "4", pianoKey: 16 },
-    { pcKey: "r", pianoKey: 17 },
-    { pcKey: "5", pianoKey: 18 },
-    { pcKey: "t", pianoKey: 19 },
-    { pcKey: "y", pianoKey: 20 },
-    { pcKey: "ý", pianoKey: 20 },
-    { pcKey: "7", pianoKey: 21 },
-    { pcKey: "u", pianoKey: 22 },
-    { pcKey: "ú", pianoKey: 22 },
-    { pcKey: "8", pianoKey: 23 },
-    { pcKey: "i", pianoKey: 24 },
-    { pcKey: "í", pianoKey: 24 },
-    { pcKey: "9", pianoKey: 25 },
-    { pcKey: "o", pianoKey: 26 },
-    { pcKey: "ó", pianoKey: 26 },
-    { pcKey: "õ", pianoKey: 26 },
-    { pcKey: "p", pianoKey: 27 },
-    { pcKey: "-", pianoKey: 28 },
-    { pcKey: "BracketLeft", pianoKey: 29 }, // ´ 
-    { pcKey: "=", pianoKey: 30 },
-    { pcKey: "[", pianoKey: 31 },
-    { pcKey: "z", pianoKey: 32 },
-    { pcKey: "s", pianoKey: 33 },
-    { pcKey: "x", pianoKey: 34 },
-    { pcKey: "d", pianoKey: 35 },
-    { pcKey: "c", pianoKey: 36 },
-    { pcKey: "f", pianoKey: 37 },
-    { pcKey: "v", pianoKey: 38 },
-    { pcKey: "b", pianoKey: 39 },
-    { pcKey: "h", pianoKey: 40 },
-    { pcKey: "n", pianoKey: 41 },
-    { pcKey: "ñ", pianoKey: 41 },
-    { pcKey: "j", pianoKey: 42 },
-    { pcKey: "m", pianoKey: 43 },
-    { pcKey: ",", pianoKey: 44 },
-    { pcKey: "l", pianoKey: 45 },
-    { pcKey: ".", pianoKey: 46 },
-    { pcKey: "ç", pianoKey: 47 },
-    { pcKey: ";", pianoKey: 48 },
-    { pcKey: "Quote", pianoKey: 49 }, // ^
-    { pcKey: "ShiftRight", pianoKey: 50 },
-    { pcKey: "]", pianoKey: 50 },
-    { pcKey: "ArrowUp", pianoKey: 51 },
-    { pcKey: "PageDown", pianoKey: 52 },
-    { pcKey: "End", pianoKey: 53 },
-    { pcKey: "\\", pianoKey: 31 },
-    { pcKey: "Enter", pianoKey: 32 }
+let keyMap = [
+    { pcKey: "q", pianoKey: 12 + (valor + 24) },
+    { pcKey: "2", pianoKey: 13 + (valor + 24) },
+    { pcKey: "w", pianoKey: 14 + (valor + 24) },
+    { pcKey: "e", pianoKey: 15 + (valor + 24) },
+    { pcKey: "é", pianoKey: 15 + (valor + 24) },
+    { pcKey: "4", pianoKey: 16 + (valor + 24) },
+    { pcKey: "r", pianoKey: 17 + (valor + 24) },
+    { pcKey: "5", pianoKey: 18 + (valor + 24) },
+    { pcKey: "t", pianoKey: 19 + (valor + 24) },
+    { pcKey: "y", pianoKey: 20 + (valor + 24) },
+    { pcKey: "ý", pianoKey: 20 + (valor + 24) },
+    { pcKey: "7", pianoKey: 21 + (valor + 24) },
+    { pcKey: "u", pianoKey: 22 + (valor + 24) },
+    { pcKey: "ú", pianoKey: 22 + (valor + 24) },
+    { pcKey: "8", pianoKey: 23 + (valor + 24) },
+    { pcKey: "i", pianoKey: 24 + (valor + 24) },
+    { pcKey: "í", pianoKey: 24 + (valor + 24) },
+    { pcKey: "9", pianoKey: 25 + (valor + 24) },
+    { pcKey: "o", pianoKey: 26 + (valor + 24) },
+    { pcKey: "ó", pianoKey: 26 + (valor + 24) },
+    { pcKey: "õ", pianoKey: 26 + (valor + 24) },
+    { pcKey: "p", pianoKey: 27 + (valor + 24) },
+    { pcKey: "-", pianoKey: 28 + (valor + 24) },
+    { pcKey: "BracketLeft", pianoKey: 29 + (valor + 24) }, // ´ 
+    { pcKey: "=", pianoKey: 30 + (valor + 24) },
+    { pcKey: "[", pianoKey: 31 + (valor + 24) },
+    { pcKey: "z", pianoKey: 32 + (valor + 24) },
+    { pcKey: "s", pianoKey: 33 + (valor + 24) },
+    { pcKey: "x", pianoKey: 34 + (valor + 24) },
+    { pcKey: "d", pianoKey: 35 + (valor + 24) },
+    { pcKey: "c", pianoKey: 36 + (valor + 24) },
+    { pcKey: "f", pianoKey: 37 + (valor + 24) },
+    { pcKey: "v", pianoKey: 38 + (valor + 24) },
+    { pcKey: "b", pianoKey: 39 + (valor + 24) },
+    { pcKey: "h", pianoKey: 40 + (valor + 24) },
+    { pcKey: "n", pianoKey: 41 + (valor + 24) },
+    { pcKey: "ñ", pianoKey: 41 + (valor + 24) },
+    { pcKey: "j", pianoKey: 42 + (valor + 24) },
+    { pcKey: "m", pianoKey: 43 + (valor + 24) },
+    { pcKey: ",", pianoKey: 44 + (valor + 24) },
+    { pcKey: "l", pianoKey: 45 + (valor + 24) },
+    { pcKey: ".", pianoKey: 46 + (valor + 24) },
+    { pcKey: "ç", pianoKey: 47 + (valor + 24) },
+    { pcKey: ";", pianoKey: 48 + (valor + 24) },
+    { pcKey: "Quote", pianoKey: 49 + (valor + 24) }, // ^
+    { pcKey: "ShiftRight", pianoKey: 50 + (valor + 24) },
+    { pcKey: "]", pianoKey: 50 + (valor + 24) },
+    { pcKey: "ArrowUp", pianoKey: 51 + (valor + 24) },
+    { pcKey: "PageDown", pianoKey: 52 + (valor + 24) },
+    { pcKey: "End", pianoKey: 53 + (valor + 24) },
+    { pcKey: "\\", pianoKey: 31 + (valor + 24) },
+    { pcKey: "Enter", pianoKey: 32 + (valor + 24) }
 ]                                   // PCキーとピアノ鍵盤番号の紐づけ
 const pianoSounds = []              // Audioオブジェクト        
 const touchKeyNumlist = []          // タッチ中の鍵盤番号リスト
@@ -275,6 +342,22 @@ function DeInvert(chord) {
     invertedChord.unshift(_terceiroMembro - 12)
 
     return invertedChord
+}
+function UmTres(chord) {
+    const UmDoisChord = [...chord]
+    _primeiroMembro = UmDoisChord.shift()
+    _segundoMembro = UmDoisChord.shift()
+    _terceiroMembro = UmDoisChord.shift()
+    _quartoMembro = UmDoisChord.shift()
+
+    UmDoisChord.unshift(_primeiroMembro)
+    UmDoisChord.push(100)
+    UmDoisChord.push(_terceiroMembro)
+    UmDoisChord.push(100)
+
+    console.log(UmDoisChord)
+    return UmDoisChord
+
 }
 function BPMtoMS(bpm) {
     const beatsPerSecond = bpm / 60;
@@ -707,9 +790,18 @@ function playArpejo() {
                     _paraAdicionar = Triade(removidos)
                     chordKeys.push(..._paraAdicionar)
                     break;
+                case "1-3":
+                    removidos = chordKeys.splice(-4)
+                    _paraAdicionar = UmTres(removidos)
+                    chordKeys.push(..._paraAdicionar)
+                    break;
                 case ' ':
                     alert("Empty Chord")
                     isArpejo = true;
+                    break;
+                case 'Brilha-Brilha':
+                    _paraAdicionar = [27, 27, 34, 34, 36, 36, 34, 100, 32, 32, 31, 31, 29, 29, 27, 100, 34, 34, 32, 32, 31, 31, 29, 100, 34, 34, 32, 32, 31, 31, 29, 100]
+                    chordKeys.push(..._paraAdicionar)
                     break;
                 default:
                     alert("Invalid Value")
@@ -736,7 +828,7 @@ function playArpejo() {
 
     if (isArpejo) {
         const keysToPress = chordKeys; // Piano key numbers to press
-        const interval = BPMtoMS(document.getElementById('tempoInput').value); // Interval in milliseconds (0.5 seconds)
+        let interval = BPMtoMS(document.getElementById('tempoInput').value); // Interval in milliseconds (0.5 seconds)
         const loopDelay = 0; // Delay before starting the loop again (2 seconds)
 
         function pressKey(index) {
@@ -745,7 +837,9 @@ function playArpejo() {
             }
 
             const keyNum = keysToPress[index];
-            pressPianoKey(keyNum); // Press the key
+            if (keyNum != 100) {
+                pressPianoKey(keyNum);
+            } // Press the key
             setTimeout(() => {
                 releasePianoKey(keyNum); // Release the key after the interval
                 pressKey(index + 1); // Press the next key recursively
@@ -756,6 +850,7 @@ function playArpejo() {
             pressKey(0); // Start pressing the keys
             setTimeout(() => {
                 if (isArpejo) {
+                    interval = BPMtoMS(document.getElementById('tempoInput').value) //Beta?
                     playLoop(); // Restart the loop after loopDelay
                 } else {
                     pressPianoKey(keysToPress[0])
@@ -767,7 +862,7 @@ function playArpejo() {
                     return
                 }
 
-            }, loopDelay + (interval * keysToPress.length + (2.5 * keysToPress.length))); // Gambiarra
+            }, loopDelay + (interval * keysToPress.length + (5 * keysToPress.length))); // Gambiarra
 
         }
         playLoop(); // Start the loop
@@ -920,6 +1015,7 @@ function pressPianoKey(keyNum) {
     if (!isKeyPressing[keyNum]) {
         // 鍵盤を離している場合のみ続行(長押しによる連打防止)
         isKeyPressing[keyNum] = true
+        console.log(keyNum)
         document.querySelector(`[data-key-num="${keyNum}"]`).classList.add("pressing")
         soundPlay(keyNum)
     }
