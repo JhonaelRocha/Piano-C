@@ -113,7 +113,7 @@ let path = "./assets/grandpiano/"
 document.addEventListener("DOMContentLoaded", function () {
     path = "./assets/grandpiano/"
     for (i = 0; i <= 63; i++) {
-        let sound = new Audio(path + (i + (valor)) + ".wav")
+        let sound = new Audio(path + (i + (valor)) + ".mp3")
         sound.volume = 0
         pianoSounds.push(sound)
     }
@@ -148,7 +148,7 @@ function trocarPath(value) {
         case 2:
             path = "./assets/grandpiano/"
             for (i = 0; i <= 63; i++) {
-                let sound = new Audio(path + (i + (valor)) + ".wav")
+                let sound = new Audio(path + (i + (valor)) + ".mp3")
                 sound.volume = 0
                 pianoSounds.push(sound)
             }
