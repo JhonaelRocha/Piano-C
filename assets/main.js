@@ -16,14 +16,14 @@ function PararSom() {
 }
 function Transpose(v) {
 
-    
+
     valor = valor + (v);
     counterSpan.textContent = valor + 24;
-    if(valor > 0){
+    if (valor > 0) {
         valor = 0
         counterSpan.textContent = valor + 24;
     }
-    if(valor < -48){
+    if (valor < -48) {
         valor = -48
         counterSpan.textContent = valor + 24;
     }
@@ -145,6 +145,7 @@ function trocarPath(value) {
                 pianoSounds.push(sound)
             }
             console.log("8-bits")
+            break;
         case 2:
             path = "./assets/grandpiano/"
             for (i = 0; i <= 63; i++) {
@@ -153,6 +154,16 @@ function trocarPath(value) {
                 pianoSounds.push(sound)
             }
             console.log("Grand Piano")
+            break;
+        case 3:
+            path = "./assets/steeldrum/"
+            for (i = 0; i <= 63; i++) {
+                let sound = new Audio(path + (i + (valor)) + ".wav")
+                sound.volume = 0
+                pianoSounds.push(sound)
+            }
+            console.log("Steel Drum")
+            break;
     }
 }
 
